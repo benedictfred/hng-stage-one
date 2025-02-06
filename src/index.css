@@ -103,6 +103,47 @@ body {
   color: #2bb804;
 }
 
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+
+.animate-shake {
+  animation: shake 1s ease-in-out;
+}
+
+.animate-bounce {
+  animation: bounce 1s ease-in-out forwards;
+}
+
 @media (max-width: 700px) {
   .container {
     padding: 2rem;

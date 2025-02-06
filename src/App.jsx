@@ -30,18 +30,26 @@ function App() {
     setColorOptions(getRandomColorOptions(mainColor));
   }, [mainColor]);
 
+  function handleNextGame() {
+    setGameStatus("playing");
+    setMainColor(getRandomColor());
+  }
+
   function handleColorGuess(guessColor) {
     if (guessColor === mainColor) {
       setGameStatus("correct");
       setScore((prev) => prev + 1);
+      setTimeout(() => handleNextGame(), 1500);
     } else {
       setGameStatus("wrong");
+      setTimeout(() => handleNextGame(), 1500);
     }
   }
 
   function startNewGame() {
     setMainColor(getRandomColor());
     setGameStatus("playing");
+    setScore(0);
   }
   return (
     <div className="container">
@@ -68,7 +76,9 @@ function App() {
           <div
             data-testid="gameStatus"
             className={` answer ${
-              gameStatus === "correct" ? "right-answer" : "wrong-answer"
+              gameStatus === "correct"
+                ? "right-answer animate-bounce"
+                : "wrong-answer animate-shake"
             }`}
           >
             {gameStatus === "correct"
